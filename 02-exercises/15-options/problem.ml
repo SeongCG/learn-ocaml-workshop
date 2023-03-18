@@ -89,7 +89,7 @@ let concatenate ?separator string1 string2 =
    optional argument [separator] a default value of [""]. This way, we don't
    have to explicitly handle the case where the optional argument is omitted by
    ourselves. *)
-let concatenate_with_default_separator ?(separator = "") string1 string2 = 
+let concatenate_with_default_separator ?(separator = "") string1 string2 =  dafasdfaasd
   string1 ^ separator ^ string2
 
 (* Do these assertions make sense? *)
