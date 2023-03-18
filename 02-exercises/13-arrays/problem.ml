@@ -54,8 +54,10 @@ let () =
 
    Let's implement a function [double] using [Array.iteri], which takes an [int
    array] and doubles each element of the array in place. *)
-let double array : unit = failwith "For you to implement"
-
+let double array : unit = 
+  Array.iteri array ~f: (fun i x -> array.(i) <- 2 * x)
+  (* As first using a ocaml, it was hard to find the systex error in the code. like using ~f:( fun x -> x)
+     *)
 let%test "Testing double..." = 
   let array = [| 1; 1; 1 |] in
   double array;
@@ -72,7 +74,8 @@ let%test "Testing double..." =
 
 (* Write a function that takes an [int array] and a list of indicies and
    doubles each of the elements at the specified indices. *)
-let double_selectively array indices : unit = failwith "For you to implement"
+let double_selectively array indices : unit =
+   Array.iteri array ~f: (fun i x -> if List.mem indices i ~equal: ( = )  then array.(i) <- 2 * x)
 
 let%test "Testing double_selectively..." = 
   let array = [| 1; 1; 1 |] in
@@ -103,7 +106,10 @@ let () =
 
 (* Write a function that takes an [int array array] and doubles each of the
    elements at the specified indices. *)
-let double_matrix matrix : unit = failwith "For you to implement"
+   let double_matrix matrix = 
+    Array.iteri matrix ~f:(fun row_index row ->
+      Array.iteri row ~f:(fun col_index x -> 
+        row.(col_index) <- 2*x))
 
 let%test "Testing double_matrix..." = 
   let matrix = [| [| 1; 2; 3 |]; [| 1; 1; 1 |] |] in

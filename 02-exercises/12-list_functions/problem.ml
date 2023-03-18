@@ -16,21 +16,25 @@ open! Base
 
    Let's rewrite [simpler_sum] and [simpler_product] using List.fold *) 
 
-let simpler_sum xs = failwith "For you to implement"
-let simpler_product xs = failwith "For you to implement"
+   (* Using https://www.swyx.io/ocaml-speedrun-3f7g#solution-17 *)
+let simpler_sum xs = 
+   List.fold_left xs ~init: 0 ~f: ( + )
+let simpler_product xs = 
+   List.fold_left xs ~init:1 ~f: ( * )
 
 (** ========== [List.map] ========== **)
 (* [List.map] has the following signature:
 
    {| val map : 'a list ‑> f:('a ‑> 'b) ‑> 'b list |}
 
-   [map] allows us to transforms lists from one type to lists of another type by
+   [map] allows us to trans forms lists from one type to lists of another type by
    applying some function [f] to every element of the list.
 
    Let's write a function that takes in an int list and transforms it into a
    float list. (Hint: you can cast an int to a float using [Float.of_int].) *)
                        
-let float_of_int xs = failwith "For you to implement"
+let float_of_int xs = 
+   List.map xs ~f: (Float.of_int)
 
 (** ========== [List.init] ========== **)
 (* [List.init] has the following signature:
@@ -43,7 +47,7 @@ let float_of_int xs = failwith "For you to implement"
 
    Let's rewrite the [range] function we wrote in problem 9 to use [init].  *)
 
-let range from to_ = failwith "For you to implement"
+let range from to_ = List.init (to_-from) ~f:(fun i -> i + from)
 
 (** ========== [List.range] ========== **)
 (* Turns out this special case of [List.init] is useful enough that it has it's own 
@@ -76,8 +80,8 @@ let range from to_ = failwith "For you to implement"
    Let's use [iter] to print a list of ints. Remember that we can use
    [Stdio.printf] to print formatted strings. *)
 
-let print_int_list xs = failwith "For you to implement"
-
+let print_int_list xs = 
+   List.iter xs ~f: (fun xs -> Stdio.printf "print_int_list %d" xs )
 (* There are many more useful [List] functions, which you can read about here:
    https://ocaml.janestreet.com/ocaml-core/latest/doc/base/Base/List/index.html
 
